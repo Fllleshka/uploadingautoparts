@@ -24,8 +24,6 @@ def switcher(argument):
             massx = [260, 960, 200, 100, 1160]
             massy = [1060, 540, 1005, 270, 10]
             movemouse(massx, massy)
-            # Следующее время выполнения операции
-            times.putDownBalances = datetime.time(22, 0).strftime("%H:%M")
         case times.uploadingpricetoweb:
             # [0] Перемещение к свёрнотому рабочему столу
             # [1] Перемещение к вкладке "Выгрузка товаров на сайт"
@@ -34,14 +32,20 @@ def switcher(argument):
             massx = [260, 960, 400, 100, 1160]
             massy = [1060, 540, 1005, 300, 10]
             movemouse(massx, massy)
-            # Следующее время выполнения операции
-            times.uploadingpricetoweb = datetime.time(22, 20).strftime("%H:%M")
         case times.acceptnewday:
             # [0] Перемещение к свёрнотому рабочему столу
             # [1] Перемещение к кнопке "Сменить рабочую дату"
             # [2] # Перемещение к сворачиванию удалённого рабочего стола
             massx = [260, 960, 920, 1160]
             massy = [1060, 540, 570, 10]
+            movemouse(massx, massy)
+        case times.closetable:
+            # [0] Перемещение к свёрнотому рабочему столу
+            # [1] Перемещение к вкладке "Сформировать2"
+            # [2] Перемещение к закрытию таблицы
+            # [3] # Перемещение к сворачиванию удалённого рабочего стола
+            massx = [260, 960, 800, 1910, 1160]
+            massy = [1060, 540, 1005, 25, 10]
             movemouse(massx, massy)
         case default:
             return print("Время сейчас:\t",argument)
@@ -59,6 +63,9 @@ class times:
     #uploadingpricetoweb = today.time().strftime("%H:%M")
     #uploadingpricetoweb = (today + datetime.timedelta(minutes=60)).strftime("%H:%M")
     uploadingpricetoweb = datetime.time(22, 20).strftime("%H:%M")
+    # Время для закрытия таблицы с проставлением остатков
+    #closetable = today.time().strftime("%H:%M")
+    closetable = datetime.time(22, 10).strftime("%H:%M")
     # Время для подтверждения новой даты
     #acceptnewday = today.time().strftime("%H:%M")
     acceptnewday = datetime.time(3, 0).strftime("%H:%M")
