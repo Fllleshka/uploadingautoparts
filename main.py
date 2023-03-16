@@ -24,7 +24,7 @@ def switcher(argument):
             massx = [260, 960, 200, 100, 1160]
             massy = [1060, 540, 1005, 270, 10]
             movemouse(massx, massy)
-            # Средующее время выполения операции
+            # Следующее время выполнения операции
             times.putDownBalances = datetime.time(22, 0).strftime("%H:%M")
         case times.uploadingpricetoweb:
             # [0] Перемещение к свёрнотому рабочему столу
@@ -34,8 +34,15 @@ def switcher(argument):
             massx = [260, 960, 400, 100, 1160]
             massy = [1060, 540, 1005, 300, 10]
             movemouse(massx, massy)
+            # Следующее время выполнения операции
             times.uploadingpricetoweb = datetime.time(22, 20).strftime("%H:%M")
-        # Время которое не выбрано для события
+        case times.acceptnewday:
+            # [0] Перемещение к свёрнотому рабочему столу
+            # [1] Перемещение к кнопке "Сменить рабочую дату"
+            # [2] # Перемещение к сворачиванию удалённого рабочего стола
+            massx = [260, 960, 920, 1160]
+            massy = [1060, 540, 570, 10]
+            movemouse(massx, massy)
         case default:
             return print("Время сейчас:\t",argument)
 
@@ -45,10 +52,16 @@ class times:
     today = datetime.datetime.today()
     todaytime = today.strftime("%H:%M:%S")
     # Время для срабатывания скрипта "Проставить остатки"
-    putDownBalances = today.time().strftime("%H:%M")
-    #putDownBalances = (today + datetime.timedelta(minutes=1)).strftime("%H:%M")
+    #putDownBalances = today.time().strftime("%H:%M")
+    #putDownBalances = (today + datetime.timedelta(minutes=30)).strftime("%H:%M")
+    putDownBalances = datetime.time(22, 0).strftime("%H:%M")
     # Время для срабатывания скрипта "Выгрузка товаров на сайт"
-    uploadingpricetoweb = (today + datetime.timedelta(minutes=5)).strftime("%H:%M")
+    #uploadingpricetoweb = today.time().strftime("%H:%M")
+    #uploadingpricetoweb = (today + datetime.timedelta(minutes=60)).strftime("%H:%M")
+    uploadingpricetoweb = datetime.time(22, 20).strftime("%H:%M")
+    # Время для подтверждения новой даты
+    #acceptnewday = today.time().strftime("%H:%M")
+    acceptnewday = datetime.time(3, 0).strftime("%H:%M")
 
 # Вечный цикл с таймером 0.5 секунд
 while True:
