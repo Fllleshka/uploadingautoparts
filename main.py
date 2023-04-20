@@ -61,7 +61,7 @@ def switcher(argument):
             # [2] # Перемещение к сворачиванию удалённого рабочего стола
             massx = [260, 960, 920, 1160]
             massy = [1060, 540, 570, 10]
-            movemouse(massx, massy, 3)
+            movemouse(massx, massy, 1)
         # Закрытие таблицы с проставлением остатков
         case times.closetable:
             # [0] Перемещение к свёрнотому рабочему столу
