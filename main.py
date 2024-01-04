@@ -21,7 +21,6 @@ def movemouse(massx, massy, numberbutton):
         else:
             pyautogui.leftClick()
 
-
 # Функция скриншота
 def takeascreenshot(name, path, reg):
     # Время сейчас
@@ -42,9 +41,13 @@ def switcher(argument):
             # [3] # Перемещение к сворачиванию удалённого рабочего стола
             massx = [260, 960, 200, 100, 1160]
             massy = [1060, 540, 1005, 270, 10]
-            movemouse(massx, massy, 3)
-            #reg = (1800, 1040, 70, 40)
-            #takeascreenshot("Date&Time", "screenshots/", reg)
+            try:
+                movemouse(massx, massy, 3)
+            except Exception:
+                print(f"Программа [Проставить остатки] завершилась с ошибкой: \n{Exception}\n")
+            else:
+                print(f"Проставка остатков прошла успешно")
+            time.sleep(60)
         # "Выгрузка товаров на сайт"
         case times.uploadingpricetoweb:
             # [0] Перемещение к свёрнотому рабочему столу
@@ -53,7 +56,13 @@ def switcher(argument):
             # [3] # Перемещение к сворачиванию удалённого рабочего стола
             massx = [260, 960, 400, 100, 1160]
             massy = [1060, 540, 1005, 300, 10]
-            movemouse(massx, massy, 3)
+            try:
+                movemouse(massx, massy, 3)
+            except Exception:
+                print(f"Программа [Выгрузка товаров на сайт] завершилась с ошибкой: \n{Exception}\n")
+            else:
+                print(f"Выгрузка товаров на сайт прошла успешно")
+            time.sleep(60)
         # Подтверждение новой даты
         case times.acceptnewday:
             # [0] Перемещение к свёрнотому рабочему столу
@@ -61,7 +70,13 @@ def switcher(argument):
             # [2] # Перемещение к сворачиванию удалённого рабочего стола
             massx = [260, 960, 920, 1160]
             massy = [1060, 540, 570, 10]
-            movemouse(massx, massy, 1)
+            try:
+                movemouse(massx, massy, 1)
+            except Exception:
+                print(f"Программа [Сменить рабочую дату] завершилась с ошибкой: \n{Exception}\n")
+            else:
+                print(f"Смена рабочей даты прошла успешно")
+            time.sleep(60)
         # Закрытие таблицы с проставлением остатков
         case times.closetable:
             # [0] Перемещение к свёрнотому рабочему столу
@@ -70,9 +85,15 @@ def switcher(argument):
             # [3] # Перемещение к сворачиванию удалённого рабочего стола
             massx = [260, 960, 800, 1910, 1160]
             massy = [1060, 540, 1005, 25, 10]
-            movemouse(massx, massy, 3)
+            try:
+                movemouse(massx, massy, 3)
+            except Exception:
+                print(f"Программа [Закрытия проставления остатков] завершилась с ошибкой: \n{Exception}\n")
+            else:
+                print(f"Закрытие проставления остатков прошло успешно")
+            time.sleep(60)
         case default:
-            return print("Время сейчас:\t",argument)
+            return print("Время сейчас:\t", argument)
 
 # Класс времён
 class times:
