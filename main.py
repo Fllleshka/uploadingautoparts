@@ -1,8 +1,9 @@
-import os
 import time
-import pyautogui
 import datetime
 import pyautogui
+import unittest
+import tests.test_times
+from tests.test_times import TestTimes
 
 # Включение паузы 1.5 секунды между действиями
 pyautogui.PAUSE = 1
@@ -43,19 +44,19 @@ def switcher(argument):
             massy = [1060, 540, 1005, 270, 10]
             try:
                 movemouse(massx, massy, 3)
-            except Exception:
-                print(f"Программа [Проставить остатки] завершилась с ошибкой: \n{Exception}\n")
+            except Exception as e:
+                print(f"Программа [Проставить остатки] завершилась с ошибкой: \n{e}\n")
             else:
                 print(f"Проставка остатков прошла успешно")
             time.sleep(60)
         # "Выгрузка товаров на сайт"
         case times.uploadingpricetoweb:
-            # [0] Перемещение к свёрнотому рабочему столу
+            # [0] Перемещение к свёрнутому рабочему столу
             # [1] Перемещение к вкладке "Выгрузка товаров на сайт"
             # [2] Перемещение к кнопке "Сформировать"
             # [3] # Перемещение к сворачиванию удалённого рабочего стола
-            massx = [260, 960, 400, 100, 1160]
-            massy = [1060, 540, 1005, 300, 10]
+            massx = [260, 960, 400, 200, 1160]
+            massy = [1060, 540, 1005, 200, 10]
             try:
                 movemouse(massx, massy, 3)
             except Exception:
@@ -65,7 +66,7 @@ def switcher(argument):
             time.sleep(60)
         # Подтверждение новой даты
         case times.acceptnewday:
-            # [0] Перемещение к свёрнотому рабочему столу
+            # [0] Перемещение к свёрнутому рабочему столу
             # [1] Перемещение к кнопке "Сменить рабочую дату"
             # [2] # Перемещение к сворачиванию удалённого рабочего стола
             massx = [260, 960, 920, 1160]
@@ -79,7 +80,7 @@ def switcher(argument):
             time.sleep(60)
         # Закрытие таблицы с проставлением остатков
         case times.closetable:
-            # [0] Перемещение к свёрнотому рабочему столу
+            # [0] Перемещение к свёрнутому рабочему столу
             # [1] Перемещение к вкладке "Сформировать2"
             # [2] Перемещение к закрытию таблицы
             # [3] # Перемещение к сворачиванию удалённого рабочего стола
@@ -100,27 +101,34 @@ class times:
     # Время сейчас
     today = datetime.datetime.today()
     todaytime = today.strftime("%H:%M:%S")
+
     # Время для срабатывания скрипта "Проставить остатки"
     #putDownBalances = today.time().strftime("%H:%M")
     #putDownBalances = (today + datetime.timedelta(minutes=30)).strftime("%H:%M")
-    putDownBalances = datetime.time(22, 0).strftime("%H:%M")
+    putDownBalances = datetime.time(20, 30).strftime("%H:%M")
+
     # Время для срабатывания скрипта "Выгрузка товаров на сайт"
     #uploadingpricetoweb = today.time().strftime("%H:%M")
-    #uploadingpricetoweb = (today + datetime.timedelta(minutes=60)).strftime("%H:%M")
-    uploadingpricetoweb = datetime.time(22, 20).strftime("%H:%M")
+    #uploadingpricetoweb = (today + datetime.timedelta(minutes=2)).strftime("%H:%M")
+    uploadingpricetoweb = datetime.time(20, 45).strftime("%H:%M")
+
     # Время для закрытия таблицы с проставлением остатков
     #closetable = today.time().strftime("%H:%M")
-    closetable = datetime.time(23, 0).strftime("%H:%M")
+    closetable = datetime.time(20, 42).strftime("%H:%M")
+
     # Время для подтверждения новой даты
     #acceptnewday = today.time().strftime("%H:%M")
     acceptnewday = datetime.time(7, 0).strftime("%H:%M")
 
-# Вечный цикл с таймером 0.5 секунд
-while True:
-    # Время сейчас
-    today = datetime.datetime.today()
-    todaytime = today.strftime("%H:%M")
-    # Запускаем функцию обработки времени
-    switcher(todaytime)
-    # Засыпаем функцию
-    time.sleep(60)
+if __name__ == '__main__':
+    # Тесты
+    #unittest.main()
+    # Вечный цикл с таймером 0.5 секунд
+    while True:
+        # Время сейчас
+        today = datetime.datetime.today()
+        todaytime = today.strftime("%H:%M")
+        # Запускаем функцию обработки времени
+        switcher(todaytime)
+        # Засыпаем функцию
+        time.sleep(60)
